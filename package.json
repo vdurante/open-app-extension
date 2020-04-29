@@ -10,6 +10,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "@babel/register": "^7.9.0",
     "babel-eslint": "^10.1.0",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
@@ -22,6 +23,7 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
+    "gulp-json-editor": "^2.5.4",
     "gulp-livereload": "^4.0.2",
     "gulp-load-plugins": "^2.0.3",
     "gulp-plumber": "^1.2.1",

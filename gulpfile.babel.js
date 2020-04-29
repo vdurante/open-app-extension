@@ -1,4 +1,5 @@
-// generated on 2020-04-28 using generator-chrome-extension 0.7.2
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
@@ -95,23 +96,33 @@ gulp.task(
 
 gulp.task(
   'chromeManifest',
-  gulp.series(() =>
-    gulp
-      .src('app/manifest.json')
-      .pipe(
-        $.chromeManifest({
-          buildnumber: true,
-          background: {
-            target: 'scripts/background.js',
-            exclude: ['scripts/chromereload.js'],
-          },
-        })
-      )
-      .pipe($.if('*.css', $.cleanCss({ compatibility: '*' })))
-      .pipe($.if('*.js', $.sourcemaps.init()))
-      .pipe($.if('*.js', $.uglify()))
-      .pipe($.if('*.js', $.sourcemaps.write('.')))
-      .pipe(gulp.dest('dist'))
+  gulp.series(
+    () =>
+      gulp
+        .src('app/manifest.json')
+        .pipe(
+          $.jsonEditor((j) => {
+            j.background.scripts = j.background.scripts.filter(
+              (e) => !['scripts/chromereload.js'].includes(e)
+            );
+            return j;
+          })
+        )
+        .pipe(gulp.dest('dist')),
+    () =>
+      gulp
+        .src([
+          'app/**/*.js',
+          'app/**/*.css',
+          '!app/scripts/chromereload.js',
+          '!app/scripts.babel/**/*',
+          '!app/bower_components/**/*',
+        ])
+        .pipe($.if('*.css', $.cleanCss({ compatibility: '*' })))
+        .pipe($.if('*.js', $.sourcemaps.init()))
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.js', $.sourcemaps.write('.')))
+        .pipe(gulp.dest('dist'))
   )
 );
 
