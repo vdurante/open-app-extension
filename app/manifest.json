@@ -1,23 +1,20 @@
 {
-  "name": "__MSG_appName__",
-  "version": "1.0.0",
   "manifest_version": 2,
-  "description": "__MSG_appDescription__",
+  "author": "Vitor Durante",
+  "name": "__MSG_extName__",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "description": "__MSG_extShortDescription__",
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
     "64": "images/icon-64.png",
     "128": "images/icon-128.png"
   },
-  "default_locale": "en",
   "background": {
-    "scripts": [
-      "libs/polyfill.min.js",
-      "scripts/chromereload.js",
-      "scripts/background.js"
-    ]
+    "scripts": ["scripts/chromereload.js", "scripts/background.js"]
   },
-  "permissions": ["tabs", "http://*/*", "https://*/*"],
+  "permissions": ["tabs", "<all_urls>"],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
@@ -30,7 +27,6 @@
       "16": "images/icon-16-off.png",
       "32": "images/icon-32-off.png"
     },
-
-    "default_title": "Open App"
+    "default_title": "__MSG_extName__"
   }
 }

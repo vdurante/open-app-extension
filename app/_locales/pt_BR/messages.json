@@ -1,10 +1,10 @@
 {
-  "appName": {
+  "extName": {
     "message": "Abrir App",
-    "description": "The name of the application"
+    "description": "extension name."
   },
-  "appDescription": {
-    "message": "Abra o App do site direto do seu navegador",
-    "description": "The description of the application"
+  "extShortDescription": {
+    "message": "Abra o App de um site direto do seu navegador.",
+    "description": "this will be in the Chrome web store: must be 132 characters or less"
   }
 }
